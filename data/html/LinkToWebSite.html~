@@ -1,0 +1,24 @@
+<!Doctype html>
+<html>
+	<head>
+		<link href="../css/css.css" type="text/css" rel="stylesheet"></link>
+		<script>
+			var zoom= document.getElementById("faframe").style.zoom;
+			function zoomIn()
+			{
+				var z=zoom*.8;
+				document.getElementById("faframe").style.zoom=z;
+			}
+			function zoomOut()
+			{
+				var z=zoom*1.2;
+				document.getElementById("faframe").style.zoom=z;
+			}
+		</script>
+	</head>
+	<body>
+		<a href="home.html"><img src="../images/fhs-crest-purple-single-w'home.png" alt="back"></img></a>
+		<iframe src="http://www.fayar.net" id="faframe" style="zoom:1;"></iframe>
+		<button onclick="zoomIn()">Zoom In</button><button onclick="zoomOut()">Zoom Out</button>
+	</body>
+</html>

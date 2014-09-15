@@ -1,0 +1,52 @@
+
+
+
+
+
+
+
+body {
+	background:purple;
+}
+
+
+#navigation div{
+	background: red;
+	
+}
+#navigation a{
+	text-decoration: none;
+	color: white;
+	
+	text-align: center;
+	font-size: 100px;
+	
+}
+#navigation p{
+	background-color: red;
+	text-align: center;
+}
+header[role="banner"] a#home {
+	background: url("../images/fhs-crest-purple.jpg") 0 0;
+	float:left;
+	height: 180px;
+	text-indent: -9999em;
+	width: 158px; 
+	margin: 0 auto 0 auto;
+}
+header[role="banner"] {
+	height: 180px;
+	width: 100%;
+	
+	position: relative;
+	
+}
+header[role="banner"] a#home:hover {
+	background-position: 158px 0; 
+}
+header[role="banner"] p{
+	text-align: center;
+}
+
+
+

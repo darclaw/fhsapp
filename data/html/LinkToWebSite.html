@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<link href="../css/css.css" type="text/css" rel="stylesheet"></link>
+                <script src="../js/jquery.js"></script>
+	</head>
+	<body>
+		<a href="home.html"><img src="../images/fhs-crest-purple-single-w'home.png" alt="back"></img></a>
+		<a href="http://fhs.fayar.net/pages/Fayetteville_High" style="color: #ffffff">click here to open in browser</a>
+		<!--<iframe src="http://fhs.fayar.net/pages/Fayetteville_High" id="faframe" style="zoom:2;"></iframe>-->
+		<div id="frame"></div>
+	</body>
+	<script>
+			function zoomIn()
+			{
+				var zoom= document.getElementById("faframe").style.zoom;
+				var z=zoom*1.2;
+				document.getElementById("faframe").style.zoom=z;
+			}
+			function zoomOut()
+			{
+				var zoom= document.getElementById("faframe").style.zoom;
+				var z=zoom*.8;
+				document.getElementById("faframe").style.zoom=z;
+			}
+                        $("#frame").load("http://fhs.fayar.net/pages/Fayetteville_High");
+                            
+        </script>
+</html>

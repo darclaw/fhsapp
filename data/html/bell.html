@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+			<link href="../css/css.css" type="text/css" rel="stylesheet"></link>
+			<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+			<script src="../js/jquery.js"></script>
+            <script src="../lib/hammer.min.js"></script>
+            <script src="../lib/jquery.hammer.min.js"></script>
+            <script src="../lib/hammer.fakemultitouch.js"></script>
+            <script src="../lib/hammer.showtouches.js"></script>
+            <script>
+                
+                $(document).ready(function(){ 
+                    if(!Hammer.HAS_TOUCHEVENTS && !Hammer.HAS_POINTEREVENTS){
+                Hammer.plugins.showTouches();
+            }
+
+            if(!Hammer.HAS_TOUCHEVENTS && !Hammer.HAS_POINTEREVENTS) {
+                Hammer.plugins.fakeMultitouch();
+            }
+                    var hammertime = Hammer(document.getElementById('image'), {
+                        transform_always_block: true,
+                        transform_min_scale: 1,
+                        drag_block_horizontal: true,
+                        drag_block_vertical: true,
+                        drag_min_distance: 0
+                    });
+
+                    var posX=0, posY=0,
+                        lastPosX=0, lastPosY=0,
+                        bufferX=0, bufferY=0,
+                        scale=1, last_scale,
+                        rotation= 1, last_rotation, dragReady=0;
+
+                    hammertime.on('touch drag dragend transform', function(ev) {
+                        elemRect = document.getElementById('zoom1');
+                        manageMultitouch(ev);
+                    });
+                    function manageMultitouch(ev){
+
+                    switch(ev.type) {
+                        case 'touch':
+                            last_scale = scale;
+                            last_rotation = rotation;
+
+                    break;
+
+                        case 'drag':
+                                posX = ev.gesture.deltaX + lastPosX;
+                                posY = ev.gesture.deltaY + lastPosY;
+                            break;
+
+                        case 'transform':
+                            rotation = last_rotation + ev.gesture.rotation;
+                            scale = Math.max(1, Math.min(last_scale * ev.gesture.scale, 10));
+                            break;
+
+                        case 'dragend':
+                            lastPosX = posX;
+                            lastPosY = posY;
+                            break;
+                    }
+
+                    var transform =
+                            "translate3d("+posX+"px,"+posY+"px, 0) " +
+                            "scale3d("+scale+","+scale+", 0) " +
+                            "rotate("+rotation+"deg) ";
+
+                    elemRect.style.transform = transform;
+                    elemRect.style.oTransform = transform;
+                    elemRect.style.msTransform = transform;        
+                    elemRect.style.mozTransform = transform;
+                    elemRect.style.webkitTransform = transform;
+                    }
+                });
+            </script>
+	</head>
+
+<body height="100%">
+<a href="home.html"><img id="home" src="../images/fhs-crest-purple-single-w'home.png" alt="back"></img></a>
+<h1 style="color:white">Bell Schedule</h1>
+<p style="color:white">Click below for today's schedule!</p>
+<div id="bells">
+	<button onclick="showmwf()">Mon-Thurs</button><button onclick="showtf()">Fri</button><button onclick="showb()">full</button>
+        <iframe id="bell" src="schedual.jpg" style="width:100%;height:65%;zoom:1;" frameborder="0";></iframe>
+        <iframe id="mwf" src="../images/mwf-times.png" style="height:65%;zoom:1;" frameborder="0";></iframe>
+        <iframe id="tf" src="../images/tf-times.png" style="height:65%;zoom:1;" frameborder="0";></iframe>
+        <!--<div id="image">
+            <img src="schedual.jpg"/>
+        </div>-->
+</div>
+	<script>
+			$("#mwf").hide();
+			$("#tf").hide();
+			function showmwf()
+			{
+				$("#bell").hide();
+				$("#mwf").show();
+				$("#tf").hide();
+			}
+			function showtf()
+			{
+				$("#bell").hide();
+				$("#tf").show();
+				$("#mwf").hide();
+			}
+			function showb()
+			{
+				$("#bell").show();
+				$("#mwf").hide();
+				$("#tf").hide();
+			}
+			function zoomIn()
+			{
+				var zoom= document.getElementById("bell").style.zoom;
+				var z=zoom*1.2;
+				document.getElementById("bell").style.zoom=z;
+				
+			}
+			function zoomOut()
+			{
+				var zoom= document.getElementById("bell").style.zoom;
+				var z=zoom*.8;
+				document.getElementById("bell").style.zoom=z;
+			}
+            //multitouch stuff
+            /*
+            
+            */
+            
+	</script>
+	
+
+</body>
+
+</html>

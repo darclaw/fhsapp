@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+	<head>
+		<link href="../css/css.css" type="text/css" rel="stylesheet"></link>
+	</head>
+	<body>
+		<div id="navigation">
+			<p><a href="./home.html" >back</p>
+			<p><a href="" >clubs</a></p>
+			<p><a href="" >games</a></p>
+			<p><a href="" >fine arts and others</a></p>
+		</div>	
+	</body>
+	<script src="../js/onLoad.js"></script>
+</html>

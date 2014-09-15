@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="../css/css.css" type="text/css" rel="stylesheet"></link>
+	<script type="text/javascript" src="http://www.google.com/jsapi?key=AIzaSyClE2_BZv2WsDNaEnxux9gtv6d03pBMu8g"></script>
+	<script type="text/javascript">
+		google.load("feeds", "1"); //Load Google Ajax Feed API (version 1)
+	</script>
+	<style>
+		#feeddiv
+		{
+			
+		}
+		
+	</style>
+</head>
+
+<body style="width:100%;height:100%;">
+<a href="home.html"><img src="../images/fhs-crest-purple-single-w'home.png" alt="back"></img></a>
+<h1 style="color:white">Today's Events</h1>
+
+<p style="color:white">Look here for today's events!</p>
+<a href="http://fhs.fayar.net/pages/Fayetteville_High/Calendar" style="color:white">view in browser</a>
+<!--
+<div style="width:100%;height:100%;">
+<iframe src="http://schoolcenter.fayar.net/education/components/calendar/#skel-mid-center-cont" style="width:90%;height:40%;"></iframe>
+</div>
+-->
+<a href="http://www.edline.net/services/user-data/activity-feed/rss/57a6b585e2e7eea4ebc8181865c6cd327dc7a0d23b6c220c0539fa55d73cfa5730f1e9a96af61093f22c100d1e1e7d09/0/640080537376720658/1">rss feed</a>
+<div id="feeddiv"></div>
+<h4 style="color:white">Check back for</h4>
+<ul style="color:white" style="list-style-type:square">
+<li>Athletic Events</li>
+<li>School Events</li>
+<li>Important Dates</li>
+</ul>
+<script type="text/javascript">
+
+var feedcontainer=document.getElementById("feeddiv");
+var feedurl="http://www.edline.net/services/user-data/activity-feed/rss/57a6b585e2e7eea4ebc8181865c6cd327dc7a0d23b6c220c0539fa55d73cfa5730f1e9a96af61093f22c100d1e1e7d09/0/640080537376720658/1";
+var feedlimit=99;
+var rssoutput="<b>Latest District Calander News:</b><br /><ul>";
+
+function rssfeedsetup(){
+var feedpointer=new google.feeds.Feed(feedurl); //Google Feed API method
+feedpointer.setNumEntries(feedlimit); //Google Feed API method
+feedpointer.load(displayfeed); //Google Feed API method
+}
+
+function displayfeed(result){
+if (!result.error){
+var thefeeds=result.feed.entries;
+for (var i=0; i<thefeeds.length; i++)
+rssoutput+="<li><text style='color:white'>"+thefeeds[i].publishedDate.substring(0,11)+" "+"</text><a href='" + thefeeds[i].link + "' style='color:white'>" + thefeeds[i].title + "</a></li>";
+rssoutput+="</ul>";
+feedcontainer.innerHTML=rssoutput;
+}
+else
+alert("Error fetching feeds!");
+}
+function highlightcal(date)
+{
+	//return "<TABLE BORDER=3 CELLSPACING=3 CELLPADDING=3><TR><TD COLSPAN='7' ALIGN=center><B>December 2001</B></TD> </TR><TR> <TD COLSPAN='7' ALIGN=center><I>Another year comes to an end</I></TD></TR><TR> <TD ALIGN=center>Sun</TD><TD ALIGN=center>Mon</TD><TD ALIGN=center>Tue</TD><TD ALIGN=center>Wed</TD><TD ALIGN=center>Thu</TD><TD ALIGN=center>Fri</TD><TD ALIGN=center>Sat</TD></TR><TR> <TD ALIGN=center></TD><TD ALIGN=center></TD><TD ALIGN=center></TD><TD ALIGN=center></TD><TD ALIGN=center></TD><TD ALIGN=center></TD><TD ALIGN=center>1</TD></TR><TR> <TD ALIGN=center>2</TD><TD ALIGN=center>3</TD><TD ALIGN=center>4</TD><TD ALIGN=center>5</TD><TD ALIGN=center>6</TD><TD ALIGN=center>7</TD><TD ALIGN=center>8</TD></TR><TR> <TD ALIGN=center>9</TD><TD ALIGN=center>10</TD><TD ALIGN=center>11</TD><TD ALIGN=center>12</TD><TD ALIGN=center>13</TD><TD ALIGN=center>14</TD><TD ALIGN=center>15</TD></TR><TR> <TD ALIGN=center>16</TD><TD ALIGN=center>17</TD><TD ALIGN=center>18</TD><TD ALIGN=center>19</TD><TD ALIGN=center>20</TD><TD ALIGN=center>21</TD><TD ALIGN=center>22</TD></TR><TR> <TD ALIGN=center>23</TD><TD ALIGN=center>24</TD><TD ALIGN=center>25</TD><TD ALIGN=center>26</TD><TD ALIGN=center>27</TD><TD ALIGN=center>28</TD><TD ALIGN=center>29</TD></TR><TR> <TD ALIGN=center>30</TD><TD ALIGN=center>31</TD><TD ALIGN=center></TD><TD ALIGN=center></TD><TD ALIGN=center></TD><TD ALIGN=center></TD><TD ALIGN=center></TD></TR></TABLE>"
+}
+
+window.onload=function(){
+rssfeedsetup();
+}
+
+</script>
+
+</body>
+</html>
